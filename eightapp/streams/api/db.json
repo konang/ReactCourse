@@ -1,0 +1,25 @@
+{
+  "streams": [
+    {
+      "title": "firstStream",
+      "description": "this is the first stream",
+      "id": 1
+    },
+    {
+      "title": "Second Stream",
+      "description": "This is the second stream",
+      "id": 2
+    },
+    {
+      "title": "First Stream with UserId",
+      "description": "This was made by me",
+      "userId": "101187492074496424282",
+      "id": 3
+    },
+    {
+      "title": "Programatic Navigation Edited",
+      "description": "Testing Programatic Navigation after push",
+      "id": 5
+    }
+  ]
+}
