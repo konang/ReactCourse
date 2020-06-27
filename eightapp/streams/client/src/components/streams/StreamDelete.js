@@ -15,7 +15,7 @@ class StreamDelete extends React.Component {
         >
           Delete
         </button>
-        <Link to="/" className="ui button">
+        <Link to="/react/stream/client/" className="ui button">
           Cancel
         </Link>
       </React.Fragment>
@@ -36,20 +36,26 @@ class StreamDelete extends React.Component {
   render() {
     if (!this.props.stream) {
       return <div>Loading..</div>;
+    } else if (this.props.stream.userId !== this.props.currentUserId) {
+      console.log(this.props.stream);
+      history.push("/react/stream/client/");
     }
     return (
       <Modal
         title="Delete Stream"
         content={this.renderContent()}
         actions={this.renderActions()}
-        onDismiss={() => history.push("/")}
+        onDismiss={() => history.push("/react/stream/client/")}
       ></Modal>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { stream: state.streams[ownProps.match.params.id] };
+  return {
+    stream: state.streams[ownProps.match.params.id],
+    currentUserId: state.auth.userId,
+  };
 };
 export default connect(mapStateToProps, { fetchStream, deleteStream })(
   StreamDelete

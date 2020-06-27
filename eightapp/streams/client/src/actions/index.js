@@ -29,7 +29,7 @@ export const createStream = (formValues) => {
     const response = await streams.post("/streams", { ...formValues, userId });
     dispatch({ type: CREATE_STREAM, payload: response.data });
     //Programatic Navigation to return to list of streams
-    history.push("/");
+    history.push("/react/stream/client/");
   };
 };
 
@@ -51,7 +51,7 @@ export const editStream = (id, formValues) => {
   return async (dispatch) => {
     const response = await streams.patch(`/streams/${id}`, formValues);
     dispatch({ type: EDIT_STREAM, payload: response.data });
-    history.push("/");
+    history.push("/react/stream/client/");
   };
 };
 
@@ -59,6 +59,6 @@ export const deleteStream = (id) => {
   return async (dispatch) => {
     await streams.delete(`/streams/${id}`);
     dispatch({ type: DELETE_STREAM, payload: id });
-    history.push("/");
+    history.push("/react/stream/client/");
   };
 };

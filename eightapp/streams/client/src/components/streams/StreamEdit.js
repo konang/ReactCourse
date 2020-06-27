@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchStream, editStream } from "../../actions";
 import StreamForm from "./StreamForm";
 import _ from "lodash";
+import history from "../../history";
 
 class StreamEdit extends React.Component {
   componentDidMount = () => {
@@ -17,6 +18,9 @@ class StreamEdit extends React.Component {
   render() {
     if (!this.props.stream) {
       return <div>Loading..</div>;
+    } else if (this.props.stream.userId !== this.props.currentUserId) {
+      console.log(this.props.stream);
+      history.push("/react/stream/client/");
     }
     return (
       <div>
@@ -31,7 +35,10 @@ class StreamEdit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { stream: state.streams[ownProps.match.params.id] };
+  return {
+    stream: state.streams[ownProps.match.params.id],
+    currentUserId: state.auth.userId,
+  };
 };
 export default connect(mapStateToProps, { fetchStream, editStream })(
   StreamEdit
